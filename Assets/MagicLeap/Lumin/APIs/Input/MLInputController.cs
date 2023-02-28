@@ -643,6 +643,8 @@ namespace UnityEngine.XR.MagicLeap
                 }
             }
 
+            public static Controller Bumper { get; set; }
+
             /// <summary>
             /// Updates the control state using the MLController API.
             /// </summary>

@@ -11,11 +11,16 @@ public class UIManager : MonoBehaviour
     private MLInput.Controller controller;
     public GameObject BienvUsuario;
     public GameObject controllerInput;
+
+    public GameObject controllerCanvas;
+    public GameObject[] Objects;
+    public GameObject[] ObjectsText;
     // Start is called before the first frame update
     void Start()
     {
         MLInput.Start();
         controller = MLInput.GetController(MLInput.Hand.Left);
+        controllerCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,16 +37,45 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
+
+        UpdateTouchPad();
     }
 
     void StartApp()
     {
         BienvUsuario.SetActive(false);
+        controllerCanvas.SetActive(true);
     }
 
     private void OnDestroy()
     {
 
         MLInput.Stop();
+    }
+
+    void UpdateTouchPad()
+    {
+        if(controller.Touch1Active)
+        {
+            float x = controller.Touch1PosAndForce.x;
+            float y = controller.Touch1PosAndForce.y;
+            float force = controller.Touch1PosAndForce.z;
+
+            if(force > 0)
+            {
+                if (x < 0.2 && y > 0.2) //top left
+                {
+                    controllerInput.GetComponent<placeObj>().ObjectToPlace = Objects[0];
+                    ObjectsText[0].GetComponent<TextMeshProUGUI>().color = Color.magenta;
+                    ObjectsText[1].GetComponent<TextMeshProUGUI>().color = Color.white;
+                }
+                else if (x > 0.2 && y > 0.2) //top right
+                {
+                    controllerInput.GetComponent<placeObj>().ObjectToPlace = Objects[1];
+                    ObjectsText[0].GetComponent<TextMeshProUGUI>().color = Color.white;
+                    ObjectsText[1].GetComponent<TextMeshProUGUI>().color = Color.magenta;
+                }
+            }
+        }
     }
 }
