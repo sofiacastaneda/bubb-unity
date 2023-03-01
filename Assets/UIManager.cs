@@ -65,13 +65,13 @@ public class UIManager : MonoBehaviour
             {
                 if (x < 0.2 && y > 0.2) //top left
                 {
-                    controllerInput.GetComponent<placeObj>().ObjectToPlace = Objects[0];
+                    //controllerInput.GetComponent<placeObj>().ObjectToPlace = Objects[0];
                     ObjectsText[0].GetComponent<TextMeshProUGUI>().color = Color.magenta;
                     ObjectsText[1].GetComponent<TextMeshProUGUI>().color = Color.white;
                 }
                 else if (x > 0.2 && y > 0.2) //top right
                 {
-                    controllerInput.GetComponent<placeObj>().ObjectToPlace = Objects[1];
+                    //controllerInput.GetComponent<placeObj>().ObjectToPlace = Objects[1];
                     ObjectsText[0].GetComponent<TextMeshProUGUI>().color = Color.white;
                     ObjectsText[1].GetComponent<TextMeshProUGUI>().color = Color.magenta;
                 }
